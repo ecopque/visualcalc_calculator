@@ -1,8 +1,6 @@
 # main_window.py
 import sys
-from PySide6.QtWidgets import (QMainWindow,
-                               QWidget,
-                               QVBoxLayout)
+from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout)
 
 class My_MainWindow(QMainWindow):
     def __init__(self, parent: QWidget | None = None, *args, **kwargs) -> None:
@@ -19,6 +17,12 @@ class My_MainWindow(QMainWindow):
         self.setWindowTitle('New Calculator - Edson Copque® | linktr.ee/edsoncopque')
 
     # Last step
-    def My_adjustFixedSize(self):
+    def my_adjustFixedSize(self):
         self.adjustSize()
         self.setFixedSize(self.width(), self.height())
+
+    def my_addWidgetToVerticalLayout(self, widget: QWidget):
+        self.my_verticallayout.addWidget(widget)
+        # self.my_adjustFixedSize() #B1:
+
+#B1: Read A1.
