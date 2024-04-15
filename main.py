@@ -1,30 +1,30 @@
-# main.py
+# main.py (A)
 import sys
 from PySide6.QtWidgets import (QApplication, QLabel)
-from main_window import My_MainWindow
+from main_window import cls_mainwindow
 
 from PySide6.QtGui import QIcon
-from variables import WINDOW_ICON_PATH
+from variables import PATH_WINDOW_ICON_PATH
 
 if __name__ == '__main__':
     # Create the application:
-    my_app = QApplication(sys.argv)
-    my_window = My_MainWindow()
+    var_app = QApplication(sys.argv)
+    var_window = cls_mainwindow()
     
     #
-    my_label = QLabel('My little text.')
-    my_label.setStyleSheet('font-size: 50px;')
+    var_label = QLabel('My little text.')
+    var_label.setStyleSheet('font-size: 50px;')
 
-    my_window.my_addWidgetToVerticalLayout(my_label)
-    my_window.my_adjustFixedSize() #A1:
+    var_window.mtd_addwidgettoverticallayout(var_label)
+    var_window.mtd_adjustfixedsize() #A1:
 
     # Defining icon
-    my_icon = QIcon(str(WINDOW_ICON_PATH))
-    my_window.setWindowIcon(my_icon)
-    my_app.setWindowIcon(my_icon)
+    var_icon = QIcon(str(PATH_WINDOW_ICON_PATH))
+    var_window.setWindowIcon(var_icon)
+    var_app.setWindowIcon(var_icon)
 
     # Runs everything
-    my_window.show()
-    my_app.exec()
+    var_window.show()
+    var_app.exec()
 
 #A1: We could put it inside #B1 / def my_addWidgetToVerticalLayout.
