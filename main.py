@@ -4,6 +4,8 @@ from PySide6.QtWidgets import (QApplication,
                                QWidget,
                                QVBoxLayout,
                                QLabel)
+from main_window import My_MainWindow
+
 if __name__ == '__main__':
     my_app = QApplication(sys.argv)
 
