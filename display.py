@@ -1,6 +1,6 @@
 #display.py (D)
 from PySide6.QtWidgets import QLineEdit
-from variables import var_big_font_size, var_text_margin
+from variables import var_big_font_size, var_text_margin, var_minimum_width
 from PySide6.QtCore import Qt
 
 class cls_display(QLineEdit):
@@ -19,3 +19,5 @@ class cls_display(QLineEdit):
         self.setTextMargins(var_margins[0], var_margins[1], var_margins[2], var_margins[3])
         # var_margins = [var_text_margin for _ in range(4)]
         # self.setTextMargins(*var_margins)
+
+        self.setMinimumWidth(var_minimum_width)
