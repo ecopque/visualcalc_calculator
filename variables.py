@@ -10,3 +10,4 @@ var_big_font_size = 40
 var_medium_font_size = 24
 var_small_font_size = 18
 var_text_margin = 15
+var_minimum_width = 450
