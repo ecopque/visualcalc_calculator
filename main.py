@@ -37,11 +37,15 @@ if __name__ == '__main__':
     # var_display = cls_display('aaa')
     var_display.setPlaceholderText('Enter your operation')
     var_window.mtd_addwidgettoverticallayout(var_display)
-    
+
+    #Status bar
+    xxx = var_window.statusBar()
+    xxx.showMessage('Edson Copque® | linktr.ee/edsoncopque | github/ecopque')
 
     var_window.mtd_addwidgettoverticallayout(cls_display('bbb'))
 
     var_window.mtd_adjustfixedsize() #A1:
+    
     # Runs everything
     var_window.show()
     var_app.exec()
