@@ -8,6 +8,8 @@ from PySide6.QtGui import QIcon
 from variables import PATH_WINDOW_ICON_PATH
 from display import cls_display
 
+from label import cls_info
+
 if __name__ == '__main__':
     # Create the application:
     var_app = QApplication(sys.argv)
@@ -24,6 +26,11 @@ if __name__ == '__main__':
     var_icon = QIcon(str(PATH_WINDOW_ICON_PATH))
     var_window.setWindowIcon(var_icon)
     var_app.setWindowIcon(var_icon)
+
+    #label.py
+    var_info = cls_info('2.0 ^ 10.0 = 1024')
+    var_window.mtd_addwidgettoverticallayout(var_info)
+
 
     # Display
     var_display = cls_display()
