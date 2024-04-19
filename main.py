@@ -10,10 +10,17 @@ from display import cls_display
 
 from label import cls_info
 
+from styles import func_setuptheme
+
+from buttons import cls_button
+
 if __name__ == '__main__':
     # Create the application:
     var_app = QApplication(sys.argv)
     var_window = cls_mainwindow()
+    
+    # styles.py
+    func_setuptheme()
     
     #
     var_label = QLabel('Enter your operation')
@@ -31,12 +38,15 @@ if __name__ == '__main__':
     var_info = cls_info('2.0 ^ 10.0 = 1024')
     var_window.mtd_addwidgettoverticallayout(var_info)
 
-
     # Display
     var_display = cls_display()
     # var_display = cls_display('aaa')
     var_display.setPlaceholderText('Enter your operation')
     var_window.mtd_addwidgettoverticallayout(var_display)
+
+    # Button
+    var_button = cls_button('Text button')
+    var_window.mtd_addwidgettoverticallayout(var_button)
 
     #Status bar
     xxx = var_window.statusBar()
