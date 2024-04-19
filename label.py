@@ -1,4 +1,4 @@
-# label.py (D)
+# label.py (E)
 from PySide6.QtWidgets import QLabel, QWidget
 # from typing import Optional
 from variables import var_small_font_size
