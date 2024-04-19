@@ -14,7 +14,7 @@ class cls_mainwindow(QMainWindow):
         self.setCentralWidget(self.var_centralwidget)
 
         # Window title
-        self.setWindowTitle('New Calculator - Edson Copque® | github/ecopque')
+        self.setWindowTitle('New Monkey Calculator')
 
     # Last step
     def mtd_adjustfixedsize(self):
