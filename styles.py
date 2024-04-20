@@ -4,15 +4,15 @@ import qdarktheme
 from variables import var_primary_color, var_darker1_primary_color, var_darker2_primary_color
 
 var_qss =  f"""
-    PushButton[cssClass="specialButton"] {{
+    QPushButton[cssClass="specialButton"] {{
         color: #fff;
         background: {var_primary_color};
     }}
-    PushButton[cssClass="specialButton"]:hover {{
+    QPushButton[cssClass="specialButton"]:hover {{
         color: #fff;
         background: {var_darker1_primary_color};
     }}
-    PushButton[cssClass="specialButton"]:pressed {{
+    QPushButton[cssClass="specialButton"]:pressed {{
         color: #fff;
         background: {var_darker2_primary_color};
     }}
