@@ -48,6 +48,9 @@ if __name__ == '__main__':
     var_button = cls_button('Text button')
     var_window.mtd_addwidgettoverticallayout(var_button)
 
+    var_button2 = cls_button('Text button2')
+    var_window.mtd_addwidgettoverticallayout(var_button2)
+
     #Status bar
     xxx = var_window.statusBar()
     xxx.showMessage('Edson Copque® | linktr.ee/edsoncopque | github/ecopque')
