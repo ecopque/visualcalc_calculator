@@ -2,6 +2,8 @@
 import sys
 from PySide6.QtWidgets import (QApplication, QLabel)
 from main_window import cls_mainwindow
+from slice import cls_down
+#I need more!
 
 from PySide6.QtGui import QIcon
 
