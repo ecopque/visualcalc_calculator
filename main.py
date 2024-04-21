@@ -12,7 +12,7 @@ from label import cls_info
 
 from styles import func_setuptheme
 
-from buttons import cls_button
+from buttons import cls_button, cls_buttonsgrid
 
 if __name__ == '__main__':
     # Create the application:
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     func_setuptheme()
     
     #
-    var_label = QLabel('Enter your operation')
+    var_label = QLabel('Version: 0.1')
     var_label.setStyleSheet('font-size: 10px;')
 
     var_window.mtd_addwidgettoverticallayout(var_label)
@@ -34,28 +34,33 @@ if __name__ == '__main__':
     var_window.setWindowIcon(var_icon)
     var_app.setWindowIcon(var_icon)
 
-    #label.py
+    # label.py
     var_info = cls_info('2.0 ^ 10.0 = 1024')
     var_window.mtd_addwidgettoverticallayout(var_info)
 
     # Display
     var_display = cls_display()
     # var_display = cls_display('aaa')
-    var_display.setPlaceholderText('Enter your operation')
+    var_display.setPlaceholderText('Enter your operation1')
     var_window.mtd_addwidgettoverticallayout(var_display)
 
-    # Button
-    var_button = cls_button('Text button')
-    var_window.mtd_addwidgettoverticallayout(var_button)
+    # Grid
+    var_buttonsgrid = cls_buttonsgrid()
+    var_window.var_verticallayout.addLayout(var_buttonsgrid)
 
-    var_button2 = cls_button('Text button2')
-    var_window.mtd_addwidgettoverticallayout(var_button2)
+
+    # Button
+    var_button1 = cls_button('0')
+    var_buttonsgrid.addWidget(var_button1, 0, 0)
+
+    var_button2 = cls_button('1')
+    var_buttonsgrid.addWidget(var_button2, 0, 1)
 
     #Status bar
     xxx = var_window.statusBar()
     xxx.showMessage('Edson Copque® | linktr.ee/edsoncopque | github/ecopque')
 
-    var_window.mtd_addwidgettoverticallayout(cls_display('bbb'))
+    var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.'))
 
     var_window.mtd_adjustfixedsize() #A1:
     
