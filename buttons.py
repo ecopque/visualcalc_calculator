@@ -11,6 +11,7 @@ class cls_button(QPushButton):
     def mtd_configstyle(self):
         self.setStyleSheet(f'font-size:{var_medium_font_size}px;')
         self.setMinimumSize(50, 30)
+        self.setProperty('cssClass', 'specialButton')
 
 class cls_buttonsgrid(QGridLayout):
     ...
