@@ -41,11 +41,11 @@ if __name__ == '__main__':
     # Display
     var_display = cls_display()
     # var_display = cls_display('aaa')
-    var_display.setPlaceholderText('Enter your operation1')
+    var_display.setPlaceholderText('Enter your operation')
     var_window.mtd_addwidgettoverticallayout(var_display)
 
     # Grid
-    var_buttonsgrid = cls_buttonsgrid()
+    var_buttonsgrid = cls_buttonsgrid(var_display)
     var_window.var_verticallayout.addLayout(var_buttonsgrid)
 
     # Button grid
