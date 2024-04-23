@@ -3,6 +3,8 @@ from PySide6.QtWidgets import QPushButton, QGridLayout
 
 from variables import var_medium_font_size
 
+from utils import func_isempty, func_isnumordot
+
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -11,7 +13,26 @@ class cls_button(QPushButton):
     def mtd_configstyle(self):
         self.setStyleSheet(f'font-size:{var_medium_font_size}px;')
         self.setMinimumSize(50, 30)
-        self.setProperty('cssClass', 'specialButton')
 
 class cls_buttonsgrid(QGridLayout):
-    ...
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+        self._var_gridmask = [
+            ['C', '◀', '^', '/'],
+            ['7', '8', '9', '*'],
+            ['4', '5', '6', '-'],
+            ['1', '2', '3', '+'],
+            ['',  '0', '.', '='],
+        ]
+
+        self._mtd_makegrid()
+    
+    def _mtd_makegrid(self):
+        for i, j in enumerate(self._var_gridmask):
+          for i2, j2 in enumerate(j):
+              var_button = cls_button(j2)
+              #if j2 not in '0123456789.':
+              if not func_isnumordot(j2) and not func_isempty(j2):
+                  var_button.setProperty('cssClass', 'specialButton')     
+              self.addWidget(var_button, i, i2)
