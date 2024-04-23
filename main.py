@@ -48,39 +48,36 @@ if __name__ == '__main__':
     var_buttonsgrid = cls_buttonsgrid()
     var_window.var_verticallayout.addLayout(var_buttonsgrid)
 
+    # Button grid
+    # var_button1 = cls_button('1')
+    # var_buttonsgrid.addWidget(var_button1, 0, 0, 1, 1)
 
-    # Button
-
-
-    var_button1 = cls_button('1')
-    var_buttonsgrid.addWidget(var_button1, 0, 0, 1, 1)
-
-    var_button2 = cls_button('2')
-    var_buttonsgrid.addWidget(var_button2, 0, 1, 1, 1)
+    # var_button2 = cls_button('2')
+    # var_buttonsgrid.addWidget(var_button2, 0, 1, 1, 1)
     
-    var_button3 = cls_button('3')
-    var_buttonsgrid.addWidget(var_button3, 0, 2, 1, 1)
+    # var_button3 = cls_button('3')
+    # var_buttonsgrid.addWidget(var_button3, 0, 2, 1, 1)
 
-    var_button4 = cls_button('4')
-    var_buttonsgrid.addWidget(var_button4, 1, 0, 1, 1)
+    # var_button4 = cls_button('4')
+    # var_buttonsgrid.addWidget(var_button4, 1, 0, 1, 1)
 
-    var_button5 = cls_button('5')
-    var_buttonsgrid.addWidget(var_button5, 1, 1, 1, 1)
+    # var_button5 = cls_button('5')
+    # var_buttonsgrid.addWidget(var_button5, 1, 1, 1, 1)
     
-    var_button6 = cls_button('6')
-    var_buttonsgrid.addWidget(var_button6, 1, 2, 1, 1)
+    # var_button6 = cls_button('6')
+    # var_buttonsgrid.addWidget(var_button6, 1, 2, 1, 1)
 
-    var_button7 = cls_button('7')
-    var_buttonsgrid.addWidget(var_button7, 2, 0, 1, 1)
+    # var_button7 = cls_button('7')
+    # var_buttonsgrid.addWidget(var_button7, 2, 0, 1, 1)
 
-    var_button8 = cls_button('8')
-    var_buttonsgrid.addWidget(var_button8, 2, 1, 1, 1)
+    # var_button8 = cls_button('8')
+    # var_buttonsgrid.addWidget(var_button8, 2, 1, 1, 1)
     
-    var_button9 = cls_button('9')
-    var_buttonsgrid.addWidget(var_button9, 2, 2, 1, 1)
+    # var_button9 = cls_button('9')
+    # var_buttonsgrid.addWidget(var_button9, 2, 2, 1, 1)
 
-    var_button0 = cls_button('0')
-    var_buttonsgrid.addWidget(var_button0, 3, 0, 1, 3)
+    # var_button0 = cls_button('0')
+    # var_buttonsgrid.addWidget(var_button0, 3, 0, 1, 3)
 
     #Status bar
     xxx = var_window.statusBar()
