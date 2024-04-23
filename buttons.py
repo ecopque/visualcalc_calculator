@@ -5,6 +5,8 @@ from variables import var_medium_font_size
 
 from utils import func_isempty, func_isnumordot
 
+from display import cls_display
+
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,7 +17,7 @@ class cls_button(QPushButton):
         self.setMinimumSize(50, 30)
 
 class cls_buttonsgrid(QGridLayout):
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, display: cls_display, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
@@ -26,6 +28,7 @@ class cls_buttonsgrid(QGridLayout):
             ['',  '0', '.', '='],
         ]
 
+        self.var_display = display
         self._mtd_makegrid()
     
     def _mtd_makegrid(self):
@@ -36,3 +39,18 @@ class cls_buttonsgrid(QGridLayout):
               if not func_isnumordot(j2) and not func_isempty(j2):
                   var_button.setProperty('cssClass', 'specialButton')     
               self.addWidget(var_button, i, i2)
+
+              var_buttonslot = self._mtd_makebuttondisplayslot(
+                  self._mtd_insertbuttontextdisplay,
+                  var_button,
+                  )
+              var_button.clicked.connect(var_buttonslot)
+    
+    def _mtd_makebuttondisplayslot(self, x, *args, **kwargs):
+        def mtd_realslot():
+            x(*args, **kwargs)
+        return mtd_realslot
+
+    def _mtd_insertbuttontextdisplay(self, button):
+        self.var_display.setText('Clicked')
+        print(123, button.text())
