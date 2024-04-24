@@ -46,11 +46,12 @@ class cls_buttonsgrid(QGridLayout):
                   )
               var_button.clicked.connect(var_buttonslot)
     
-    def _mtd_makebuttondisplayslot(self, x, *args, **kwargs):
-        def mtd_realslot():
-            x(*args, **kwargs)
+    def _mtd_makebuttondisplayslot(self, method, *args, **kwargs):
+        def mtd_realslot(checked):
+            method(checked, *args, **kwargs)
         return mtd_realslot
 
-    def _mtd_insertbuttontextdisplay(self, button):
-        self.var_display.setText('Clicked')
-        print(123, button.text())
+    def _mtd_insertbuttontextdisplay(self, checked, button):
+        var_buttontext = button.text()
+        self.var_display.setText(var_buttontext)
+        print(var_buttontext, checked)
