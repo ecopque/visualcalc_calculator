@@ -1,11 +1,10 @@
 # buttons.py (G)
 from PySide6.QtWidgets import QPushButton, QGridLayout
-
 from variables import var_medium_font_size
-
 from utils import func_isempty, func_isnumordot
-
 from display import cls_display
+from PySide6.QtCore import Slot
+
 
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
@@ -15,6 +14,7 @@ class cls_button(QPushButton):
     def mtd_configstyle(self):
         self.setStyleSheet(f'font-size:{var_medium_font_size}px;')
         self.setMinimumSize(50, 30)
+        self.setCheckable(True)
 
 class cls_buttonsgrid(QGridLayout):
     def __init__(self, display: cls_display, *args, **kwargs) -> None:
@@ -47,11 +47,12 @@ class cls_buttonsgrid(QGridLayout):
               var_button.clicked.connect(var_buttonslot)
     
     def _mtd_makebuttondisplayslot(self, method, *args, **kwargs):
-        def mtd_realslot(checked):
-            method(checked, *args, **kwargs)
+        @Slot(bool)
+        def mtd_realslot(_):
+            method(*args, **kwargs)
         return mtd_realslot
 
-    def _mtd_insertbuttontextdisplay(self, checked, button):
+    def _mtd_insertbuttontextdisplay(self, button):
         var_buttontext = button.text()
-        self.var_display.setText(var_buttontext)
-        print(var_buttontext, checked)
+        self.var_display.insert(var_buttontext)
+        # print(var_buttontext, checked)
