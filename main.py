@@ -1,6 +1,6 @@
 # main.py (A)
 import sys
-from PySide6.QtWidgets import (QApplication, QLabel)
+from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow)
 from main_window import cls_mainwindow
 
 from PySide6.QtGui import QIcon
@@ -87,6 +87,12 @@ if __name__ == '__main__':
 
     var_window.mtd_adjustfixedsize() #A1:
     
+    #Menubar $$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@CRASH
+    mainn = QMainWindow()
+    menu = mainn.menuBar()
+    first_menu = menu.addMenu('File')
+    first_action = first_menu.addAction('Open')
+
     # Runs everything
     var_window.show()
     var_app.exec()
