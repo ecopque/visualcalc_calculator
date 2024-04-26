@@ -87,12 +87,9 @@ if __name__ == '__main__':
 
     var_window.mtd_adjustfixedsize() #A1:
     
-    #Menubar $$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@CRASH
-    mainn = QMainWindow()
-    menu = mainn.menuBar()
-    first_menu = menu.addMenu('File')
-    first_action = first_menu.addAction('Open')
-
+    # Menubar xxxxxxxxxxx
+    var_window.mtd_setupmenu()
+    
     # Runs everything
     var_window.show()
     var_app.exec()
