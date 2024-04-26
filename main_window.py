@@ -14,7 +14,7 @@ class cls_mainwindow(QMainWindow):
         self.setCentralWidget(self.var_centralwidget)
 
         # Window title
-        self.setWindowTitle('New Monkey Calculator')
+        self.setWindowTitle('[beta] Graphic Calculator')
 
     # Last step
     def mtd_adjustfixedsize(self):
