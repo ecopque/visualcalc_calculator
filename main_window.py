@@ -25,4 +25,10 @@ class cls_mainwindow(QMainWindow):
         self.var_verticallayout.addWidget(widget)
         # self.my_adjustFixedSize() #B1:
 
+    def mtd_setupmenu(self):
+        var_menu = self.menuBar()
+        first_menu = var_menu.addMenu('File')
+        first_option =  first_menu.addAction('Open')
+        
+
 #B1: Read A1.
