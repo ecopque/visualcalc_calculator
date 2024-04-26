@@ -23,7 +23,7 @@ if __name__ == '__main__':
     func_setuptheme()
     
     #
-    var_label = QLabel('Version: 0.1')
+    var_label = QLabel('Version: 1.0')
     var_label.setStyleSheet('font-size: 10px;')
 
     var_window.mtd_addwidgettoverticallayout(var_label)
