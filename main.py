@@ -2,16 +2,11 @@
 import sys
 from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow)
 from main_window import cls_mainwindow
-
 from PySide6.QtGui import QIcon
-
 from variables import PATH_WINDOW_ICON_PATH
 from display import cls_display
-
 from label import cls_info
-
 from styles import func_setuptheme
-
 from buttons import cls_button, cls_buttonsgrid
 
 if __name__ == '__main__':
@@ -22,7 +17,7 @@ if __name__ == '__main__':
     # styles.py
     func_setuptheme()
     
-    #
+    # Qlabel
     var_label = QLabel('Version: 1.0')
     var_label.setStyleSheet('font-size: 10px;')
 
@@ -35,7 +30,7 @@ if __name__ == '__main__':
     var_app.setWindowIcon(var_icon)
 
     # label.py
-    var_info = cls_info('2.0 ^ 10.0 = 1024')
+    var_info = cls_info('Your account')
     var_window.mtd_addwidgettoverticallayout(var_info)
 
     # Display
@@ -45,46 +40,14 @@ if __name__ == '__main__':
     var_window.mtd_addwidgettoverticallayout(var_display)
 
     # Grid
-    var_buttonsgrid = cls_buttonsgrid(var_display)
+    var_buttonsgrid = cls_buttonsgrid(var_display, var_info)
     var_window.var_verticallayout.addLayout(var_buttonsgrid)
-
-    # Button grid
-    # var_button1 = cls_button('1')
-    # var_buttonsgrid.addWidget(var_button1, 0, 0, 1, 1)
-
-    # var_button2 = cls_button('2')
-    # var_buttonsgrid.addWidget(var_button2, 0, 1, 1, 1)
-    
-    # var_button3 = cls_button('3')
-    # var_buttonsgrid.addWidget(var_button3, 0, 2, 1, 1)
-
-    # var_button4 = cls_button('4')
-    # var_buttonsgrid.addWidget(var_button4, 1, 0, 1, 1)
-
-    # var_button5 = cls_button('5')
-    # var_buttonsgrid.addWidget(var_button5, 1, 1, 1, 1)
-    
-    # var_button6 = cls_button('6')
-    # var_buttonsgrid.addWidget(var_button6, 1, 2, 1, 1)
-
-    # var_button7 = cls_button('7')
-    # var_buttonsgrid.addWidget(var_button7, 2, 0, 1, 1)
-
-    # var_button8 = cls_button('8')
-    # var_buttonsgrid.addWidget(var_button8, 2, 1, 1, 1)
-    
-    # var_button9 = cls_button('9')
-    # var_buttonsgrid.addWidget(var_button9, 2, 2, 1, 1)
-
-    # var_button0 = cls_button('0')
-    # var_buttonsgrid.addWidget(var_button0, 3, 0, 1, 3)
 
     #Status bar
     xxx = var_window.statusBar()
-    xxx.showMessage('Edson Copque® | linktr.ee/edsoncopque | github/ecopque')
+    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github/ecopque')
 
     var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.'))
-
     var_window.mtd_adjustfixedsize() #A1:
     
     # Menubar xxxxxxxxxxx
