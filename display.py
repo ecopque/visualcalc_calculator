@@ -3,6 +3,12 @@ from PySide6.QtWidgets import QLineEdit
 from variables import var_big_font_size, var_text_margin, var_minimum_width
 from PySide6.QtCore import Qt
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from buttons import cls_button
+var_button: 'cls_button'
+
+
 class cls_display(QLineEdit):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
