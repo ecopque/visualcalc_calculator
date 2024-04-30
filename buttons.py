@@ -17,7 +17,7 @@ class cls_button(QPushButton):
         self.setCheckable(False)
 
 class cls_buttonsgrid(QGridLayout):
-    def __init__(self, display: cls_display, *args, **kwargs) -> None:
+    def __init__(self, display: cls_display, info, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
@@ -29,6 +29,7 @@ class cls_buttonsgrid(QGridLayout):
         ]
 
         self.var_display = display
+        self.var_info = info
         self._mtd_makegrid()
     
     def _mtd_makegrid(self):
