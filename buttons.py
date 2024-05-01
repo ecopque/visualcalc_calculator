@@ -10,7 +10,6 @@ if TYPE_CHECKING:
     from display import cls_display
     from label import cls_info
 
-
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,15 +39,13 @@ class cls_buttonsgrid(QGridLayout):
         self._mtd_makegrid()
 
     @property #getter
-    def equation(self):
+    def mtd_equation(self):
         return self._equation
     
-    @equation.setter
-    def equation(self, value):
+    @mtd_equation.setter
+    def mtd_equation(self, value):
         self._equation = value
         self.var_info.setText(value)
-
-
     
     def _mtd_makegrid(self):
         for i, j in enumerate(self._var_gridmask):
@@ -56,16 +53,26 @@ class cls_buttonsgrid(QGridLayout):
               var_button = cls_button(j2)
               #if j2 not in '0123456789.':
               if not func_isnumordot(j2) and not func_isempty(j2):
-                  var_button.setProperty('cssClass', 'specialButton')     
+                  var_button.setProperty('cssClass', 'specialButton')
+                  self._mtd_configspecialbutton(var_button)   
               self.addWidget(var_button, i, i2)
 
-              var_buttonslot = self._mtd_makebuttondisplayslot(
-                  self._mtd_insertbuttontextdisplay,
-                  var_button,
-                  )
-              var_button.clicked.connect(var_buttonslot)
+              var_slot = self._mtd_makeslot(self._mtd_insertbuttontextdisplay, var_button)
+              self._mtd_connectbuttonclicked(var_button, var_slot)
+            #   var_button.clicked.connect(var_slot)
+
+    def _mtd_connectbuttonclicked(self, button, slot):
+        button.clicked.connect(slot)
     
-    def _mtd_makebuttondisplayslot(self, method, *args, **kwargs):
+    def _mtd_configspecialbutton(self, button):
+        var_text = button.text()
+        
+        if var_text == 'C':
+            var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.')
+            self._mtd_connectbuttonclicked(button, var_slot)
+            # button.clicked.connect(self.var_display.clear)
+    
+    def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
         def mtd_realslot(_):
             method(*args, **kwargs)
@@ -78,3 +85,7 @@ class cls_buttonsgrid(QGridLayout):
         if not func_isvalidnumber(var_newdisplayvalue):
             return 
         self.var_display.insert(var_buttontext)
+
+    def _mtd_clear(self, msg):
+        print(msg)
+        self.var_display.clear()
