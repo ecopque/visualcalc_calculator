@@ -5,6 +5,11 @@ from utils import func_isempty, func_isnumordot, func_isvalidnumber
 from display import cls_display
 from PySide6.QtCore import Slot
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from display import cls_display
+    from label import cls_info
+
 
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
@@ -17,7 +22,7 @@ class cls_button(QPushButton):
         self.setCheckable(False)
 
 class cls_buttonsgrid(QGridLayout):
-    def __init__(self, display: cls_display, info, *args, **kwargs) -> None:
+    def __init__(self, display: cls_display, info: 'cls_info', *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
@@ -30,7 +35,20 @@ class cls_buttonsgrid(QGridLayout):
 
         self.var_display = display
         self.var_info = info
+        # self.var_info.setText('kkk') # main, label, button. ;-)
+        self._equation = ''
         self._mtd_makegrid()
+
+    @property #getter
+    def equation(self):
+        return self._equation
+    
+    @equation.setter
+    def equation(self, value):
+        self._equation = value
+        self.var_info.setText(value)
+
+
     
     def _mtd_makegrid(self):
         for i, j in enumerate(self._var_gridmask):
