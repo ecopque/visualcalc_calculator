@@ -37,6 +37,10 @@ class cls_buttonsgrid(QGridLayout):
         # self.var_info.setText('kkk') # main, label, button. ;-)
         self._equation = ''
         self._mtd_makegrid()
+        self._equationInitialValue = 'You x'
+        self._left = None
+        self._right = None
+        self._op = None
 
     @property #getter
     def mtd_equation(self):
