@@ -1,7 +1,7 @@
 # buttons.py (G)
-from PySide6.QtWidgets import QPushButton, QGridLayout
+from PySide6.QtWidgets import (QPushButton, QGridLayout)
 from variables import var_medium_font_size
-from utils import func_isempty, func_isnumordot, func_isvalidnumber
+from utils import (func_isempty, func_isnumordot, func_isvalidnumber)
 from display import cls_display
 from PySide6.QtCore import Slot
 
@@ -36,11 +36,10 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info = info
         # self.var_info.setText('kkk') # main, label, button. ;-)
         self._equation = ''
-        self._mtd_makegrid()
-        self._equationInitialValue = 'You x'
         self._left = None
         self._right = None
-        self._op = None
+        self._operator = None
+        self._mtd_makegrid()
 
     @property #getter
     def mtd_equation(self):
@@ -71,10 +70,13 @@ class cls_buttonsgrid(QGridLayout):
     def _mtd_configspecialbutton(self, button):
         var_text = button.text()
         
-        if var_text == 'C':
+        if var_text == ('C'):
             var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.')
             self._mtd_connectbuttonclicked(button, var_slot)
             # button.clicked.connect(self.var_display.clear)
+
+        if var_text in ('+-/*'):
+            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
     
     def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
@@ -93,3 +95,9 @@ class cls_buttonsgrid(QGridLayout):
     def _mtd_clear(self, msg):
         print(msg)
         self.var_display.clear()
+    
+    def _mtd_operatorclicked(self, button):
+        var_buttontext2 = button.text()
+        var_displaytext = self.var_display.text()
+        self.var_display.clear()
+        print(var_buttontext2)
