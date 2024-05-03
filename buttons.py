@@ -35,22 +35,22 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display = display
         self.var_info = info
         # self.var_info.setText('kkk') # main, label, button. ;-)
-        self._equation = ''
-        self._equationinitial = 'Your account'
-        self._left = None
-        self._right = None
-        self._operator = None
+        self._var_equation = ''
+        self._var_equationinitial = 'Your account'
+        self._var_left = None
+        self._var_right = None
+        self._var_operator = None
 
-        self.equation = self._equationinitial
+        self.mtd_equation = self._var_equationinitial
         self._mtd_makegrid()
 
     @property #getter
-    def equation(self):
-        return self._equation
+    def mtd_equation(self):
+        return self._var_equation
     
-    @equation.setter
-    def equation(self, value):
-        self._equation = value
+    @mtd_equation.setter
+    def mtd_equation(self, value):
+        self._var_equation = value
         self.var_info.setText(value)
     
     def _mtd_makegrid(self):
@@ -80,6 +80,9 @@ class cls_buttonsgrid(QGridLayout):
 
         if var_text in ('+-/*'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
+
+        if var_text in '=':
+            self._mtd_connectbuttonclicked(button, self._mtd_equal)
     
     def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
@@ -97,10 +100,10 @@ class cls_buttonsgrid(QGridLayout):
 
     def _mtd_clear(self, msg):
         print(msg)
-        self._left = None
-        self._right = None
-        self._operator = None
-        self.equation = self._equationinitial
+        self._var_left = None
+        self._var_right = None
+        self._var_operator = None
+        self.mtd_equation = self._var_equationinitial
         self.var_display.clear()
         # self.var_info.setText(self.equation)
     
@@ -110,14 +113,35 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.clear()
 
         # If you click on the operator without any number.
-        if not func_isvalidnumber(var_displaytext) and self._left is None:
+        if not func_isvalidnumber(var_displaytext) and self._var_left is None:
             print('Nothing for left value.')
             return
         
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
-        if self._left is None:
-            self._left = float(var_displaytext)
-        self._operator = var_buttontext
-        self.equation = f'{self._left} {self._operator} ???'
+        if self._var_left is None:
+            self._var_left = float(var_displaytext)
+        self._var_operator = var_buttontext
+        self.mtd_equation = f'{self._var_left} {self._var_operator} ???'
 
         print(var_buttontext)
+
+    def _mtd_equal(self):
+        var_displaytext = self.var_display.text()
+
+        if not func_isvalidnumber(var_displaytext):
+            print('Nothing for right value.')
+            return
+        
+        self._var_right = float(var_displaytext)
+        self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}'
+        
+        var_result = 0.0
+        try:
+            var_result = eval(self.mtd_equation)
+        except ZeroDivisionError:
+            print('###Zero division error.')
+        
+        self.var_display.clear()
+        self.var_info.setText(f'{self.mtd_equation} = {var_result}')
+        self._var_left = var_result
+        self._var_right = None
