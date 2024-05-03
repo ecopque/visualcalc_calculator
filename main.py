@@ -1,13 +1,13 @@
 # main.py (A)
 import sys
-from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow)
+from PySide6.QtWidgets import (QApplication, QLabel)
 from main_window import cls_mainwindow
 from PySide6.QtGui import QIcon
 from variables import PATH_WINDOW_ICON_PATH
 from display import cls_display
 from label import cls_info
 from styles import func_setuptheme
-from buttons import cls_button, cls_buttonsgrid
+from buttons import (cls_buttonsgrid)
 
 if __name__ == '__main__':
     # Create the application:
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     var_app.setWindowIcon(var_icon)
 
     # label.py
-    var_info = cls_info('Your account')
+    var_info = cls_info('Your account333')
     var_window.mtd_addwidgettoverticallayout(var_info)
 
     # Display
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     #Status bar
     xxx = var_window.statusBar()
-    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github/ecopque')
+    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github ecopque')
 
     var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.'))
     var_window.mtd_adjustfixedsize() #A1:
