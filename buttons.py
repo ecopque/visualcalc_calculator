@@ -36,17 +36,20 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info = info
         # self.var_info.setText('kkk') # main, label, button. ;-)
         self._equation = ''
+        self._equationinitial = 'Your account'
         self._left = None
         self._right = None
         self._operator = None
+
+        self.equation = self._equationinitial
         self._mtd_makegrid()
 
     @property #getter
-    def mtd_equation(self):
+    def equation(self):
         return self._equation
     
-    @mtd_equation.setter
-    def mtd_equation(self, value):
+    @equation.setter
+    def equation(self, value):
         self._equation = value
         self.var_info.setText(value)
     
@@ -94,10 +97,27 @@ class cls_buttonsgrid(QGridLayout):
 
     def _mtd_clear(self, msg):
         print(msg)
+        self._left = None
+        self._right = None
+        self._operator = None
+        self.equation = self._equationinitial
         self.var_display.clear()
+        # self.var_info.setText(self.equation)
     
     def _mtd_operatorclicked(self, button):
-        var_buttontext2 = button.text()
+        var_buttontext = button.text()
         var_displaytext = self.var_display.text()
         self.var_display.clear()
-        print(var_buttontext2)
+
+        # If you click on the operator without any number.
+        if not func_isvalidnumber(var_displaytext) and self._left is None:
+            print('Nothing for left value.')
+            return
+        
+        # If there is a number on the left, we do nothing. We are waiting for the number on the right
+        if self._left is None:
+            self._left = float(var_displaytext)
+        self._operator = var_buttontext
+        self.equation = f'{self._left} {self._operator} ???'
+
+        print(var_buttontext)
