@@ -4,6 +4,7 @@ from variables import var_medium_font_size
 from utils import (func_isempty, func_isnumordot, func_isvalidnumber)
 from display import cls_display
 from PySide6.QtCore import Slot
+import math
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -78,7 +79,7 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_connectbuttonclicked(button, var_slot)
             # button.clicked.connect(self.var_display.clear)
 
-        if var_text in ('+-/*'):
+        if var_text in ('+-/*^'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
 
         if var_text in '=':
@@ -134,10 +135,14 @@ class cls_buttonsgrid(QGridLayout):
         
         self._var_right = float(var_displaytext)
         self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}'
-        
+        # self._var_left: float #AAA
         var_result = 0.0
         try:
-            var_result = eval(self.mtd_equation)
+            if '^' in self.mtd_equation:
+                var_result = eval(self.mtd_equation.replace('^', '**'))
+                # var_result = math.pow(self._var_left, self._var_right) #AAA
+            else:
+                var_result = eval(self.mtd_equation)
         except ZeroDivisionError:
             print('###Zero division error.')
         
