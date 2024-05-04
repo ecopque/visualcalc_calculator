@@ -26,7 +26,7 @@ class cls_buttonsgrid(QGridLayout):
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
-            ['C', '◀', '^', '/'],
+            ['C', '◀', '^', '/'], #◀
             ['7', '8', '9', '*'],
             ['4', '5', '6', '-'],
             ['1', '2', '3', '+'],
@@ -78,12 +78,17 @@ class cls_buttonsgrid(QGridLayout):
             var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.')
             self._mtd_connectbuttonclicked(button, var_slot)
             # button.clicked.connect(self.var_display.clear)
+        
+        if var_text in '◀':
+            self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
         if var_text in ('+-/*^'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
 
         if var_text in '=':
             self._mtd_connectbuttonclicked(button, self._mtd_equal)
+
+
     
     def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
