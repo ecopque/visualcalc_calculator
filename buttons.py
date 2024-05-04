@@ -136,17 +136,22 @@ class cls_buttonsgrid(QGridLayout):
         self._var_right = float(var_displaytext)
         self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}'
         # self._var_left: float #AAA
-        var_result = 0.0
+        var_result: str | float = 'Error'
         try:
-            if '^' in self.mtd_equation:
+            if '^' in self.mtd_equation and isinstance(self._var_left, float):
                 var_result = eval(self.mtd_equation.replace('^', '**'))
                 # var_result = math.pow(self._var_left, self._var_right) #AAA
             else:
                 var_result = eval(self.mtd_equation)
         except ZeroDivisionError:
             print('###Zero division error.')
+        except OverflowError:
+            print('###Overflow: gigantic number.')
         
         self.var_display.clear()
         self.var_info.setText(f'{self.mtd_equation} = {var_result}')
         self._var_left = var_result
         self._var_right = None
+        
+        if var_result == 'Error':
+            self._var_left = None
