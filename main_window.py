@@ -1,6 +1,6 @@
 # main_window.py (B)
 import sys
-from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout)
+from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QMessageBox)
 
 class cls_mainwindow(QMainWindow):
     def __init__(self, parent: QWidget | None = None, *args, **kwargs) -> None:
@@ -14,7 +14,7 @@ class cls_mainwindow(QMainWindow):
         self.setCentralWidget(self.var_centralwidget)
 
         # Window title
-        self.setWindowTitle('[beta] Graphic Calculator')
+        self.setWindowTitle('[beta] Graphic Calculator | eCop PI[A}')
 
     # Last step
     def mtd_adjustfixedsize(self):
@@ -29,6 +29,8 @@ class cls_mainwindow(QMainWindow):
         var_menu = self.menuBar()
         first_menu = var_menu.addMenu('File')
         first_option =  first_menu.addAction('Open')
-        
+
+    def mtd_makemsgbox(self):
+        return QMessageBox(self)
 
 #B1: Read A1.
