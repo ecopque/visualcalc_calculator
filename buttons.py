@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from display import cls_display
     from label import cls_info
+    from main_window import cls_mainwindow
 
 class cls_button(QPushButton):
     def __init__(self, *args, **kwargs):
@@ -22,11 +23,11 @@ class cls_button(QPushButton):
         self.setCheckable(False)
 
 class cls_buttonsgrid(QGridLayout):
-    def __init__(self, display: cls_display, info: 'cls_info', *args, **kwargs) -> None:
+    def __init__(self, display: cls_display, info: 'cls_info', window: 'cls_mainwindow', *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
-            ['C', '◀', '^', '/'], #◀
+            ['C', '◀', '^', '/'], #◀ <-
             ['7', '8', '9', '*'],
             ['4', '5', '6', '-'],
             ['1', '2', '3', '+'],
@@ -35,6 +36,7 @@ class cls_buttonsgrid(QGridLayout):
 
         self.var_display = display
         self.var_info = info
+        self.var_window = window
         # self.var_info.setText('kkk') # main, label, button. ;-)
         self._var_equation = ''
         self._var_equationinitial = 'Your account'
@@ -120,7 +122,7 @@ class cls_buttonsgrid(QGridLayout):
 
         # If you click on the operator without any number.
         if not func_isvalidnumber(var_displaytext) and self._var_left is None:
-            print('Nothing for left value.')
+            self._msg_showerror('Nothing for left value.')
             return
         
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
@@ -149,9 +151,9 @@ class cls_buttonsgrid(QGridLayout):
             else:
                 var_result = eval(self.mtd_equation)
         except ZeroDivisionError:
-            print('###Zero division error.')
+            print('***Zero division error.')
         except OverflowError:
-            print('###Overflow: gigantic number.')
+            print('***Overflow: gigantic number.')
         
         self.var_display.clear()
         self.var_info.setText(f'{self.mtd_equation} = {var_result}')
@@ -160,3 +162,9 @@ class cls_buttonsgrid(QGridLayout):
         
         if var_result == 'Error':
             self._var_left = None
+
+    def _msg_showerror(self, text):
+        var_msgbox = self.var_window.mtd_makemsgbox()
+        var_msgbox.setText(text)
+        var_msgbox.setIcon(var_msgbox.Icon.Warning)
+        var_msgbox.exec()
