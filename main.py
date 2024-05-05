@@ -40,12 +40,12 @@ if __name__ == '__main__':
     var_window.mtd_addwidgettoverticallayout(var_display)
 
     # Grid
-    var_buttonsgrid = cls_buttonsgrid(var_display, var_info)
+    var_buttonsgrid = cls_buttonsgrid(var_display, var_info, var_window)
     var_window.var_verticallayout.addLayout(var_buttonsgrid)
 
     #Status bar
     xxx = var_window.statusBar()
-    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github ecopque')
+    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github/ecopque')
 
     var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.'))
     var_window.mtd_adjustfixedsize() #A1:
@@ -56,5 +56,3 @@ if __name__ == '__main__':
     # Runs everything
     var_window.show()
     var_app.exec()
-
-#A1: We could put it inside #B1 / def my_addWidgetToVerticalLayout.
