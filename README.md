@@ -21,5 +21,6 @@ This Python program is a simple calculator that allows users to perform basic ar
 
 ## Images of the calculator under construction
 - 2024-05-06&nbsp;
+
 ![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/2024-05-06_-_calculator.png)
 
