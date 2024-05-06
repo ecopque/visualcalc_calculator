@@ -81,13 +81,13 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_connectbuttonclicked(button, var_slot)
             # button.clicked.connect(self.var_display.clear)
         
-        if var_text in '◀':
+        if var_text == ('◀'):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
-        if var_text in ('+-/*^'):
+        if var_text == ('+-/*^'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
 
-        if var_text in '=':
+        if var_text == ('='):
             self._mtd_connectbuttonclicked(button, self._mtd_equal)
 
 
