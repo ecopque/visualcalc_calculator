@@ -122,7 +122,7 @@ class cls_buttonsgrid(QGridLayout):
 
         # If you click on the operator without any number.
         if not func_isvalidnumber(var_displaytext) and self._var_left is None:
-            self._msg_showerror('Nothing for left value.')
+            self._mtd_showerror("You didn't type anithing")
             return
         
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
@@ -163,12 +163,27 @@ class cls_buttonsgrid(QGridLayout):
         if var_result == 'Error':
             self._var_left = None
 
-    def _msg_showerror(self, text):
+    def _mtd_makedialog(self, text):
         var_msgbox = self.var_window.mtd_makemsgbox()
         var_msgbox.setText(text)
-        var_msgbox.setIcon(var_msgbox.Icon.Warning)
 
+        return var_msgbox
+    
+    def _mtd_showerror(self, text):
+        var_msgbox = self._mtd_makedialog(text)
+        var_msgbox.setIcon(var_msgbox.Icon.Warning)
         var_msgbox.setStandardButtons(var_msgbox.StandardButton.Ok | var_msgbox.StandardButton.Cancel)
         var_msgbox.button(var_msgbox.StandardButton.Cancel).setText('Calcelll')
+        
+        var_result = var_msgbox.exec()
+        if var_result == var_msgbox.StandardButton.Ok:
+            print('Clicked ok')
+        elif var_result == var_msgbox.StandardButton.Cancel:
+            print('Clicked cancel')
+        # var_msgbox.exec()
 
+    def _mtd_showinfo(self, text):
+        var_msgbox = self._mtd_makedialog(text)
+        var_msgbox.setIcon(var_msgbox.Icon.Information)
+       
         var_msgbox.exec()
