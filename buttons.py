@@ -167,4 +167,8 @@ class cls_buttonsgrid(QGridLayout):
         var_msgbox = self.var_window.mtd_makemsgbox()
         var_msgbox.setText(text)
         var_msgbox.setIcon(var_msgbox.Icon.Warning)
+
+        var_msgbox.setStandardButtons(var_msgbox.StandardButton.Ok | var_msgbox.StandardButton.Cancel)
+        var_msgbox.button(var_msgbox.StandardButton.Cancel).setText('Calcelll')
+
         var_msgbox.exec()
