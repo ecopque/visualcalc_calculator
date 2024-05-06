@@ -122,7 +122,7 @@ class cls_buttonsgrid(QGridLayout):
 
         # If you click on the operator without any number.
         if not func_isvalidnumber(var_displaytext) and self._var_left is None:
-            self._mtd_showerror("You didn't type anithing")
+            self._mtd_showerror("You didn't type anything.")
             return
         
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
@@ -137,7 +137,7 @@ class cls_buttonsgrid(QGridLayout):
         var_displaytext = self.var_display.text()
 
         if not func_isvalidnumber(var_displaytext):
-            print('Nothing for right value.')
+            self._mtd_showerror('Incomplete account.')
             return
         
         self._var_right = float(var_displaytext)
@@ -151,9 +151,9 @@ class cls_buttonsgrid(QGridLayout):
             else:
                 var_result = eval(self.mtd_equation)
         except ZeroDivisionError:
-            print('***Zero division error.')
+            self._mtd_showerror('Division by zero.')
         except OverflowError:
-            print('***Overflow: gigantic number.')
+            self._mtd_showerror('Overflow: gigantic number.')
         
         self.var_display.clear()
         self.var_info.setText(f'{self.mtd_equation} = {var_result}')
@@ -166,7 +166,6 @@ class cls_buttonsgrid(QGridLayout):
     def _mtd_makedialog(self, text):
         var_msgbox = self.var_window.mtd_makemsgbox()
         var_msgbox.setText(text)
-
         return var_msgbox
     
     def _mtd_showerror(self, text):
