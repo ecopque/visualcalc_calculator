@@ -58,7 +58,7 @@ class cls_buttonsgrid(QGridLayout):
     
     def _mtd_makegrid(self):
         self.var_display.var_enterpressed.connect(lambda: print('Signal received.', type(self).__name__))
-        self.var_display.var_backspacepressed.connect(self.var_display.backspace)
+        self.var_display.var_backspacedeletepressed.connect(self.var_display.backspace)
         self.var_display.var_scapepressed.connect(lambda: print('Signal received.', type(self).__name__))
      
      
