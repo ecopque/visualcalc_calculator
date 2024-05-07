@@ -1,7 +1,7 @@
 #display.py (D)
 from PySide6.QtWidgets import QLineEdit
 from variables import (var_big_font_size, var_text_margin, var_minimum_width)
-from PySide6.QtCore import Qt
+from PySide6.QtCore import (Qt, Signal)
 from PySide6.QtGui import QKeyEvent
 
 from typing import TYPE_CHECKING # Just test.
@@ -10,6 +10,8 @@ if TYPE_CHECKING:
 var_button: 'cls_button'
 
 class cls_display(QLineEdit):
+    var_eqrequested = Signal()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.mtd_configstyle()
@@ -33,5 +35,7 @@ class cls_display(QLineEdit):
         var_isenter = (var_key == var_keysqt.Key_Enter) or (var_key == var_keysqt.Key_Return)
 
         if var_isenter:
-            print('Enter button.')
+            print('Enter button.', type(self).__name__)
+            self.var_eqrequested.emit()
+            return event.ignore
         # return super().keyPressEvent(event)
