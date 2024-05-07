@@ -57,8 +57,11 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info.setText(value)
     
     def _mtd_makegrid(self):
-        self.var_display.var_eqrequested.connect(lambda: print('Signal received.', type(self).__name__))
-
+        self.var_display.var_equationpressed.connect(lambda: print('Signal received.', type(self).__name__))
+        self.var_display.var_delpressed.connect(lambda: print('Signal received.', type(self).__name__))
+        self.var_display.var_clearpressed.connect(lambda: print('Signal received.', type(self).__name__))
+     
+     
         for i, j in enumerate(self._var_gridmask):
           for i2, j2 in enumerate(j):
               var_button = cls_button(j2)
