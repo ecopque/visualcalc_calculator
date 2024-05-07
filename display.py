@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QLineEdit
 from variables import (var_big_font_size, var_text_margin, var_minimum_width)
 from PySide6.QtCore import (Qt, Signal)
 from PySide6.QtGui import QKeyEvent
+from utils import func_isempty
 
 from typing import TYPE_CHECKING # Just test.
 if TYPE_CHECKING:
@@ -10,9 +11,9 @@ if TYPE_CHECKING:
 var_button: 'cls_button'
 
 class cls_display(QLineEdit):
-    var_equationpressed = Signal()
-    var_delpressed = Signal()
-    var_clearpressed = Signal()
+    var_enterpressed = Signal()
+    var_backspacepressed = Signal()
+    var_scapepressed = Signal()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -32,26 +33,31 @@ class cls_display(QLineEdit):
         self.setMinimumWidth(var_minimum_width)
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
+        var_text = event.text().strip()
         var_key = event.key()
         var_keysqt = Qt.Key
         
         var_isenter = (var_key == var_keysqt.Key_Enter) or (var_key == var_keysqt.Key_Return)
         # var_isenter = (event.key() == Qt.Key.Key_Enter) or (event.key() == Qt.Key.Key_Return)
-        var_isdelete = (var_key == var_keysqt.Key_Backspace) or (var_key == var_keysqt.Key_Delete)
+        var_isbackspace = (var_key == var_keysqt.Key_Backspace) or (var_key == var_keysqt.Key_Delete)
         var_isescape = (event.key() == Qt.Key.Key_Escape)
 
         if var_isenter:
             print('Enter button.', type(self).__name__)
-            self.var_equationpressed.emit()
-            return event.ignore
+            self.var_enterpressed.emit()
+            return event.ignore()
         # return super().keyPressEvent(event)
 
-        if var_isdelete:
-            print('Delete button.', type(self).__name__)
-            self.var_delpressed.emit()
-            return event.ignore
+        if var_isbackspace:
+            print('Backspace button.', type(self).__name__)
+            self.var_backspacepressed.emit()
+            return event.ignore()
 
         if var_isescape:
             print('Escape button.', type(self).__name__)
-            self.var_clearpressed.emit()
-            return event.ignore
+            self.var_scapepressed.emit()
+            return event.ignore()
+        
+        if func_isempty(var_text):
+            return event.ignore()
+        print('Text', var_text)
