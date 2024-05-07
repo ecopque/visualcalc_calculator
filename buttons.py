@@ -57,6 +57,8 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info.setText(value)
     
     def _mtd_makegrid(self):
+        self.var_display.var_eqrequested.connect(lambda: print('Signal received.', type(self).__name__))
+
         for i, j in enumerate(self._var_gridmask):
           for i2, j2 in enumerate(j):
               var_button = cls_button(j2)
@@ -76,18 +78,18 @@ class cls_buttonsgrid(QGridLayout):
     def _mtd_configspecialbutton(self, button):
         var_text = button.text()
         
-        if var_text == ('C'):
+        if var_text in ('C'):
             var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.')
             self._mtd_connectbuttonclicked(button, var_slot)
             # button.clicked.connect(self.var_display.clear)
         
-        if var_text == ('◀'):
+        if var_text in ('◀'):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
-        if var_text == ('+-/*^'):
+        if var_text in ('+-/*^'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
 
-        if var_text == ('='):
+        if var_text in ('='):
             self._mtd_connectbuttonclicked(button, self._mtd_equal)
 
 
