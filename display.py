@@ -69,3 +69,4 @@ class cls_display(QLineEdit):
             print('varInputPressed', type(self).__name__)
             self.var_inputpressed.emit()
             return event.ignore()
+#See
