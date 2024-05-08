@@ -56,8 +56,8 @@ class cls_buttonsgrid(QGridLayout):
         self._var_equation = value
         self.var_info.setText(value)
 
-    def mtd_eraseyou(self):
-        print('Signal received.', type(self).__name__)
+    def mtd_eraseyou(self, *args):
+        print('Signal received.', type(self).__name__, args)
     
     def _mtd_makegrid(self):
         self.var_display.var_enterpressed.connect(self.mtd_eraseyou)
