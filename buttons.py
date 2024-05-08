@@ -55,12 +55,16 @@ class cls_buttonsgrid(QGridLayout):
     def mtd_equation(self, value):
         self._var_equation = value
         self.var_info.setText(value)
+
+    def mtd_eraseyou(self):
+        print('Signal received.', type(self).__name__)
     
     def _mtd_makegrid(self):
-        self.var_display.var_enterpressed.connect(lambda: print('Signal received.', type(self).__name__))
+        self.var_display.var_enterpressed.connect(self.mtd_eraseyou)
         self.var_display.var_backspacedeletepressed.connect(self.var_display.backspace)
-        self.var_display.var_scapepressed.connect(lambda: print('Signal received.', type(self).__name__))
-     
+        self.var_display.var_scapepressed.connect(self.mtd_eraseyou)
+        self.var_display.var_inputpressed.connect(self.mtd_eraseyou)
+
      
         for i, j in enumerate(self._var_gridmask):
           for i2, j2 in enumerate(j):
