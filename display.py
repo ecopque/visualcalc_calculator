@@ -14,7 +14,7 @@ class cls_display(QLineEdit):
     var_enterpressed = Signal()
     var_backspacedeletepressed = Signal()
     var_scapepressed = Signal()
-    var_inputpressed = Signal()
+    var_inputpressed = Signal(str)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -67,6 +67,5 @@ class cls_display(QLineEdit):
 
         if func_isnumordot(var_text):
             print('varInputPressed', type(self).__name__)
-            self.var_inputpressed.emit()
+            self.var_inputpressed.emit(var_text)
             return event.ignore()
-#See
