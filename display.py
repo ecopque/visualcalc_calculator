@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QLineEdit
 from variables import (var_big_font_size, var_text_margin, var_minimum_width)
 from PySide6.QtCore import (Qt, Signal)
 from PySide6.QtGui import QKeyEvent
-from utils import func_isempty
+from utils import (func_isempty, func_isnumordot)
 
 from typing import TYPE_CHECKING # Just test.
 if TYPE_CHECKING:
@@ -14,6 +14,7 @@ class cls_display(QLineEdit):
     var_enterpressed = Signal()
     var_backspacedeletepressed = Signal()
     var_scapepressed = Signal()
+    var_inputpressed = Signal()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -63,3 +64,8 @@ class cls_display(QLineEdit):
         if func_isempty(var_text):
             return event.ignore()
         print('Text', var_text)
+
+        if func_isnumordot(var_text):
+            print('varInputPressed', type(self).__name__)
+            self.var_inputpressed.emit()
+            return event.ignore()
