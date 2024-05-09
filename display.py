@@ -14,7 +14,8 @@ class cls_display(QLineEdit):
     var_enterpressed = Signal()
     var_backspacedeletepressed = Signal()
     var_scapepressed = Signal()
-    var_inputpressed = Signal(str)
+    var_inputpressed = Signal(str) #xxxx
+    var_operatorpressed = Signal(str)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -45,22 +46,32 @@ class cls_display(QLineEdit):
         
         var_isescape = (event.key() == Qt.Key.Key_Escape) or (var_key == var_keysqt.Key_C)
 
+        var_isoperator = (var_key == var_keysqt.Key_Plus) or (var_key == var_keysqt.Key_Minus) or (var_key == var_keysqt.Key_Slash) or (var_key == var_keysqt.Key_Asterisk) or (var_key == var_keysqt.Key_P)
+
         if var_isenter or var_text == ('='):
-            print(f'Enter or "=" button.', type(self).__name__)
+            print(f'var_isenter: Enter or "=" button.', type(self).__name__)
             self.var_enterpressed.emit()
             return event.ignore()
         # return super().keyPressEvent(event)
 
         if var_isbackspacedelete:
-            print('Backspace button.', type(self).__name__)
+            print('var_isbackspacedelete: Backspace button.', type(self).__name__)
             self.var_backspacedeletepressed.emit()
             return event.ignore()
 
         if var_isescape or var_text.lower() == ('c'):
-            print('Escape or "C/c" button.', type(self).__name__)
+            print('var_isescape: Escape or "C/c" button.', type(self).__name__)
             self.var_scapepressed.emit()
             return event.ignore()
         
+        if var_isoperator:
+            print('var_isoperator: Operators button.', type(self).__name__)
+            if var_text.lower() == ('p'):
+                var_text = ('^')
+            self.var_operatorpressed.emit(var_text)
+            return event.ignore()
+
+
         if func_isempty(var_text):
             return event.ignore()
         print('Text', var_text)
