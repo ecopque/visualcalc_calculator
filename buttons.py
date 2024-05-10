@@ -57,25 +57,25 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info.setText(value)
 
     def mtd_eraseyou(self, *args):
-        print('Signal received.', type(self).__name__, args)
+        print('mtd_eraseyou: Signal received.', type(self).__name__, args)
     
     def _mtd_makegrid(self):
-        self.var_display.var_enterpressed.connect(self.mtd_eraseyou)
-        self.var_display.var_backspacedeletepressed.connect(self.var_display.backspace)
-        self.var_display.var_scapepressed.connect(self.mtd_eraseyou)
-        self.var_display.var_inputpressed.connect(self.mtd_eraseyou)
+        self.var_display.var_enterpressed.connect(self._mtd_equal)
+        self.var_display.var_backspacedeletepressed.connect(self.var_display.backspace) #
+        self.var_display.var_scapepressed.connect(self._mtd_clear)
+        self.var_display.var_inputpressed.connect(self._mtd_inserttodisplay)
+        self.var_display.var_operatorpressed.connect(self._mtd_configleftoperator)
 
-     
         for i, j in enumerate(self._var_gridmask):
-          for i2, j2 in enumerate(j):
-              var_button = cls_button(j2)
+          for i2, var_buttontext in enumerate(j):
+              var_button = cls_button(var_buttontext)
               #if j2 not in '0123456789.':
-              if not func_isnumordot(j2) and not func_isempty(j2):
+              if not func_isnumordot(var_buttontext) and not func_isempty(var_buttontext):
                   var_button.setProperty('cssClass', 'specialButton')
                   self._mtd_configspecialbutton(var_button)   
               self.addWidget(var_button, i, i2)
 
-              var_slot = self._mtd_makeslot(self._mtd_insertbuttontextdisplay, var_button)
+              var_slot = self._mtd_makeslot(self._mtd_inserttodisplay, var_buttontext)
               self._mtd_connectbuttonclicked(var_button, var_slot)
             #   var_button.clicked.connect(var_slot)
 
@@ -94,26 +94,24 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
         if var_text in ('+-/*^'):
-            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_operatorclicked, button))
+            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, button))
 
         if var_text in ('='):
             self._mtd_connectbuttonclicked(button, self._mtd_equal)
 
-
-    
     def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
         def mtd_realslot(_):
             method(*args, **kwargs)
         return mtd_realslot
 
-    def _mtd_insertbuttontextdisplay(self, button):
-        var_buttontext = button.text()
-        var_newdisplayvalue = self.var_display.text() + var_buttontext
+    def _mtd_inserttodisplay(self, text):
+        # var_buttontext = button.text()
+        var_newdisplayvalue = self.var_display.text() + text
         
         if not func_isvalidnumber(var_newdisplayvalue):
             return 
-        self.var_display.insert(var_buttontext)
+        self.var_display.insert(text)
 
     def _mtd_clear(self, msg):
         print(msg)
@@ -124,8 +122,8 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.clear()
         # self.var_info.setText(self.equation)
     
-    def _mtd_operatorclicked(self, button):
-        var_buttontext = button.text()
+    def _mtd_configleftoperator(self, text):
+        # var_buttontext = button.text()
         var_displaytext = self.var_display.text()
         self.var_display.clear()
 
@@ -137,11 +135,10 @@ class cls_buttonsgrid(QGridLayout):
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
         if self._var_left is None:
             self._var_left = float(var_displaytext)
-        self._var_operator = var_buttontext
+        self._var_operator = text
         self.mtd_equation = f'{self._var_left} {self._var_operator} ???'
 
-        print(var_buttontext)
-
+    @Slot()
     def _mtd_equal(self):
         var_displaytext = self.var_display.text()
 
