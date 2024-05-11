@@ -31,7 +31,7 @@ class cls_buttonsgrid(QGridLayout):
             ['7', '8', '9', '*'],
             ['4', '5', '6', '-'],
             ['1', '2', '3', '+'],
-            ['',  '0', '.', '='],
+            ['N',  '0', '.', '='],
         ]
 
         self.var_display = display
@@ -90,6 +90,9 @@ class cls_buttonsgrid(QGridLayout):
         if var_text in ('◀'):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
+        if var_text in ('N'):
+            self._mtd_connectbuttonclicked(button, self._mtd_invertnumber)
+
         if var_text in ('+-/*^'):
             self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, var_text))
 
@@ -102,6 +105,16 @@ class cls_buttonsgrid(QGridLayout):
         def mtd_realslot(_):
             method(*args, **kwargs)
         return mtd_realslot
+
+    @Slot()
+    def _mtd_invertnumber(self):
+        var_displaytext = self.var_display.text()
+
+        if not func_isvalidnumber(var_displaytext):
+            return
+        
+        var_newnumber = float(var_displaytext) * -1
+        self.var_display.setText(str(var_newnumber))
 
     @Slot()
     def _mtd_inserttodisplay(self, text):
