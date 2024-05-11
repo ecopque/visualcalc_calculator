@@ -1,7 +1,7 @@
 # buttons.py (G)
 from PySide6.QtWidgets import (QPushButton, QGridLayout)
 from variables import var_medium_font_size
-from utils import (func_isempty, func_isnumordot, func_isvalidnumber)
+from utils import (func_isempty, func_isnumordot, func_isvalidnumber, func_converttointorfloat)
 from display import cls_display
 from PySide6.QtCore import Slot
 import math
@@ -113,8 +113,8 @@ class cls_buttonsgrid(QGridLayout):
         if not func_isvalidnumber(var_displaytext):
             return
         
-        var_newnumber = float(var_displaytext) * -1
-        self.var_display.setText(str(var_newnumber))
+        var_number = func_converttointorfloat(var_displaytext) * -1
+        self.var_display.setText(str(var_number))
 
     @Slot()
     def _mtd_inserttodisplay(self, text):
@@ -148,7 +148,7 @@ class cls_buttonsgrid(QGridLayout):
         
         # If there is a number on the left, we do nothing. We are waiting for the number on the right
         if self._var_left is None:
-            self._var_left = float(var_displaytext)
+            self._var_left = func_converttointorfloat(var_displaytext)
         self._var_operator = text
         self.mtd_equation = f'{self._var_left} {self._var_operator} ???'
 
@@ -160,12 +160,12 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_showerror('Incomplete account.')
             return
         
-        self._var_right = float(var_displaytext)
+        self._var_right = func_converttointorfloat(var_displaytext)
         self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}'
-        # self._var_left: float #AAA
-        var_result: str | float = 'Error'
+        # self._var_left: func_converttointorfloat #AAA
+        var_result: str | func_converttointorfloat = 'Error'
         try:
-            if '^' in self.mtd_equation and isinstance(self._var_left, float):
+            if '^' in self.mtd_equation and isinstance(self._var_left, func_converttointorfloat):
                 var_result = eval(self.mtd_equation.replace('^', '**'))
                 # var_result = math.pow(self._var_left, self._var_right) #AAA
             else:
