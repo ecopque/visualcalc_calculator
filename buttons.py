@@ -165,7 +165,7 @@ class cls_buttonsgrid(QGridLayout):
         # self._var_left: func_converttointorfloat #AAA
         var_result: str | func_converttointorfloat = 'Error'
         try:
-            if '^' in self.mtd_equation and isinstance(self._var_left, func_converttointorfloat):
+            if '^' in self.mtd_equation and isinstance(self._var_left, int | float):
                 var_result = eval(self.mtd_equation.replace('^', '**'))
                 # var_result = math.pow(self._var_left, self._var_right) #AAA
             else:
