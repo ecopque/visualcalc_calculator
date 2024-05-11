@@ -55,9 +55,6 @@ class cls_buttonsgrid(QGridLayout):
     def mtd_equation(self, value):
         self._var_equation = value
         self.var_info.setText(value)
-
-    def mtd_eraseyou(self, *args):
-        print('mtd_eraseyou: Signal received.', type(self).__name__, args)
     
     def _mtd_makegrid(self):
         self.var_display.var_enterpressed.connect(self._mtd_equal)
@@ -94,17 +91,19 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
 
         if var_text in ('+-/*^'):
-            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, button))
+            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, var_text))
 
         if var_text in ('='):
             self._mtd_connectbuttonclicked(button, self._mtd_equal)
-
+    
+    @Slot()
     def _mtd_makeslot(self, method, *args, **kwargs):
         @Slot(bool)
         def mtd_realslot(_):
             method(*args, **kwargs)
         return mtd_realslot
 
+    @Slot()
     def _mtd_inserttodisplay(self, text):
         # var_buttontext = button.text()
         var_newdisplayvalue = self.var_display.text() + text
@@ -113,6 +112,7 @@ class cls_buttonsgrid(QGridLayout):
             return 
         self.var_display.insert(text)
 
+    @Slot()
     def _mtd_clear(self, msg):
         print(msg)
         self._var_left = None
@@ -122,6 +122,7 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.clear()
         # self.var_info.setText(self.equation)
     
+    @Slot()
     def _mtd_configleftoperator(self, text):
         # var_buttontext = button.text()
         var_displaytext = self.var_display.text()
