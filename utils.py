@@ -9,6 +9,13 @@ def func_isnumordot(string: str):
 def func_isempty(string: str):
     return len(string) == 0
 
+def func_converttointorfloat(string: str):
+    var_number = float(string)
+
+    if var_number.is_integer():
+        var_number = int(var_number)
+    return var_number
+
 def func_isvalidnumber(string: str):
     var_valid = False
     try:
