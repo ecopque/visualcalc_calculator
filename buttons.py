@@ -58,7 +58,7 @@ class cls_buttonsgrid(QGridLayout):
     
     def _mtd_makegrid(self):
         self.var_display.var_enterpressed.connect(self._mtd_equal)
-        self.var_display.var_backspacedeletepressed.connect(self.var_display.backspace) #
+        self.var_display.var_backspacedeletepressed.connect(self._mtd_backspace)
         self.var_display.var_scapepressed.connect(self._mtd_clear)
         self.var_display.var_inputpressed.connect(self._mtd_inserttodisplay)
         self.var_display.var_operatorpressed.connect(self._mtd_configleftoperator)
@@ -124,6 +124,7 @@ class cls_buttonsgrid(QGridLayout):
         if not func_isvalidnumber(var_newdisplayvalue):
             return 
         self.var_display.insert(text)
+        self.var_display.setFocus()
 
     @Slot()
     def _mtd_clear(self, msg):
@@ -133,6 +134,7 @@ class cls_buttonsgrid(QGridLayout):
         self._var_operator = None
         self.mtd_equation = self._var_equationinitial
         self.var_display.clear()
+        self.var_display.setFocus()
         # self.var_info.setText(self.equation)
     
     @Slot()
@@ -140,6 +142,7 @@ class cls_buttonsgrid(QGridLayout):
         # var_buttontext = button.text()
         var_displaytext = self.var_display.text()
         self.var_display.clear()
+        self.var_display.setFocus()
 
         # If you click on the operator without any number.
         if not func_isvalidnumber(var_displaytext) and self._var_left is None:
@@ -156,7 +159,7 @@ class cls_buttonsgrid(QGridLayout):
     def _mtd_equal(self):
         var_displaytext = self.var_display.text()
 
-        if not func_isvalidnumber(var_displaytext):
+        if not func_isvalidnumber(var_displaytext) or (self._var_left is None):
             self._mtd_showerror('Incomplete account.')
             return
         
@@ -179,9 +182,16 @@ class cls_buttonsgrid(QGridLayout):
         self.var_info.setText(f'{self.mtd_equation} = {var_result}')
         self._var_left = var_result
         self._var_right = None
+        self.var_display.setFocus()
+
         
         if var_result == 'Error':
             self._var_left = None
+
+    @Slot()
+    def _mtd_backspace(self):
+        self.var_display.backspace
+        self.var_display.setFocus()
 
     def _mtd_makedialog(self, text):
         var_msgbox = self.var_window.mtd_makemsgbox()
@@ -195,6 +205,8 @@ class cls_buttonsgrid(QGridLayout):
         var_msgbox.button(var_msgbox.StandardButton.Cancel).setText('Calcelll')
         
         var_result = var_msgbox.exec()
+        self.var_display.setFocus()
+
         if var_result == var_msgbox.StandardButton.Ok:
             print('Clicked ok')
         elif var_result == var_msgbox.StandardButton.Cancel:
@@ -206,3 +218,4 @@ class cls_buttonsgrid(QGridLayout):
         var_msgbox.setIcon(var_msgbox.Icon.Information)
        
         var_msgbox.exec()
+        self.var_display.setFocus()
