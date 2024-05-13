@@ -1,12 +1,13 @@
 # styles.py (F)
 # pip install pyqtdarktheme
 import qdarktheme
-from variables import var_primary_color, var_darker1_primary_color, var_darker2_primary_color
+from variables import (var_primary_color, var_primary_color_red, 
+                       var_darker1_primary_color, var_darker2_primary_color)
 
 var_qss =  f"""
     QPushButton[cssClass="specialButton"] {{
         color: #fff;
-        background: {var_primary_color};
+        background: {var_primary_color_red};
     }}
     QPushButton[cssClass="specialButton"]:hover {{
         color: #fff;
