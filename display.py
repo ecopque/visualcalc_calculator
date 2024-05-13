@@ -71,7 +71,6 @@ class cls_display(QLineEdit):
             self.var_operatorpressed.emit(var_text)
             return event.ignore()
 
-
         if func_isempty(var_text):
             return event.ignore()
         print('Text', var_text)
