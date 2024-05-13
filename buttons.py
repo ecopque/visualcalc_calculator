@@ -190,7 +190,7 @@ class cls_buttonsgrid(QGridLayout):
 
     @Slot()
     def _mtd_backspace(self):
-        self.var_display.backspace
+        self.var_display.backspace()
         self.var_display.setFocus()
 
     def _mtd_makedialog(self, text):
