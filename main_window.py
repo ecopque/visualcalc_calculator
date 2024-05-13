@@ -32,5 +32,3 @@ class cls_mainwindow(QMainWindow):
 
     def mtd_makemsgbox(self):
         return QMessageBox(self)
-
-#B1: Read A1.
