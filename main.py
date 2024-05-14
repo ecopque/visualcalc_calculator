@@ -1,58 +1,46 @@
 # main.py (A)
-import sys
-from PySide6.QtWidgets import (QApplication, QLabel)
-from main_window import cls_mainwindow
-from PySide6.QtGui import QIcon
-from variables import PATH_WINDOW_ICON_PATH
-from display import cls_display
-from label import cls_info
-from styles import func_setuptheme
-from buttons import (cls_buttonsgrid)
+import sys #1:
+from PySide6.QtWidgets import (QApplication, QLabel) #2:
+from main_window import cls_mainwindow #3:
+from PySide6.QtGui import QIcon #4:
+from variables import PATH_WINDOW_ICON_PATH #5:
+from display import cls_display #6:
+from label import cls_info #7:
+from styles import func_setuptheme #8:
+from buttons import cls_buttonsgrid #9:
 
-if __name__ == '__main__':
-    # Create the application:
-    var_app = QApplication(sys.argv)
-    var_window = cls_mainwindow()
+if __name__ == '__main__': #10:
     
-    # styles.py
-    func_setuptheme()
+    var_app = QApplication(sys.argv) #11:
+    var_window = cls_mainwindow() #12:
     
-    # Qlabel
-    var_label = QLabel('Version: 1.0')
-    var_label.setStyleSheet('font-size: 10px;')
-
-    var_window.mtd_addwidgettoverticallayout(var_label)
-    # var_window.mtd_adjustfixedsize() #A1:
-
-    # Defining icon
-    var_icon = QIcon(str(PATH_WINDOW_ICON_PATH))
-    var_window.setWindowIcon(var_icon)
-    var_app.setWindowIcon(var_icon)
-
-    # label.py
-    var_info = cls_info('Your account333')
-    var_window.mtd_addwidgettoverticallayout(var_info)
-
-    # Display
-    var_display = cls_display()
-    # var_display = cls_display('aaa')
-    var_display.setPlaceholderText('Enter your operation')
-    var_window.mtd_addwidgettoverticallayout(var_display)
-
-    # Grid
-    var_buttonsgrid = cls_buttonsgrid(var_display, var_info, var_window)
-    var_window.var_verticallayout.addLayout(var_buttonsgrid)
-
-    #Status bar
-    xxx = var_window.statusBar()
-    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github/ecopque')
-
-    var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.'))
-    var_window.mtd_adjustfixedsize() #A1:
+    func_setuptheme() #13:
     
-    # Menubar xxxxxxxxxxx
-    var_window.mtd_setupmenu()
+    var_label = QLabel('Version: 1.0') #14:
+    var_label.setStyleSheet('font-size: 10px;') #15:
+    var_window.mtd_addwidgettoverticallayout(var_label) #16:
+
+    var_icon = QIcon(str(PATH_WINDOW_ICON_PATH)) #17:
+    var_window.setWindowIcon(var_icon) #18:
+    var_app.setWindowIcon(var_icon) #18:
+
+    var_info = cls_info('Your new account') #19:
+    var_window.mtd_addwidgettoverticallayout(var_info) #20:
+
+    var_display = cls_display() #21:
+    var_display.setPlaceholderText('Enter your operation') #22:
+    var_window.mtd_addwidgettoverticallayout(var_display) #23:
+
+    var_buttonsgrid = cls_buttonsgrid(var_display, var_info, var_window) #24:
+    var_window.var_verticallayout.addLayout(var_buttonsgrid) #25:
+
+    xxx = var_window.statusBar() #26:
+    xxx.showMessage('Edson Copque® | ➤linktr.ee/edsoncopque | ➤github/ecopque') #26:
+
+    var_window.mtd_addwidgettoverticallayout(cls_display('Take your notes.')) #27:
+    var_window.mtd_adjustfixedsize() #28:
     
-    # Runs everything
-    var_window.show()
-    var_app.exec()
+    var_window.mtd_setupmenu() #29:
+    
+    var_window.show() #30:
+    var_app.exec() #31:
