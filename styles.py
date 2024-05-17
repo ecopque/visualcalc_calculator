@@ -1,5 +1,4 @@
 # styles.py (F)
-# pip install pyqtdarktheme
 import qdarktheme
 from variables import (var_primary_color, var_primary_color_red, 
                        var_darker1_primary_color, var_darker2_primary_color)
@@ -17,9 +16,9 @@ var_qss =  f"""
         color: #fff;
         background: {var_darker2_primary_color};
     }}
-"""
+""" #1:
 
-def func_setuptheme():
+def func_setuptheme(): #2:
     qdarktheme.setup_theme(
         theme='dark',
         corner_shape='rounded',
