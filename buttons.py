@@ -4,11 +4,10 @@ from variables import var_medium_font_size
 from utils import (func_isempty, func_isnumordot, func_isvalidnumber, func_converttointorfloat)
 from display import cls_display
 from PySide6.QtCore import Slot
-import math
+# import math
 
 from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from display import cls_display
+if TYPE_CHECKING: #1:
     from label import cls_info
     from main_window import cls_mainwindow
 
