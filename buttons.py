@@ -62,13 +62,12 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.var_inputpressed.connect(self._mtd_inserttodisplay)
         self.var_display.var_operatorpressed.connect(self._mtd_configleftoperator)
 
-        for i, j in enumerate(self._var_gridmask): #23:
-          for i2, var_buttontext in enumerate(j):
+        for i, j in enumerate(self._var_gridmask): #23: #24:
+          for i2, var_buttontext in enumerate(j): #25:
               var_button = cls_button(var_buttontext)
-              #if j2 not in '0123456789.':
-              if not func_isnumordot(var_buttontext) and not func_isempty(var_buttontext):
-                  var_button.setProperty('cssClass', 'specialButton')
-                  self._mtd_configspecialbutton(var_button)   
+              if not func_isnumordot(var_buttontext) and not func_isempty(var_buttontext): #26:
+                  var_button.setProperty('cssClass', 'specialButton') #27:
+                  self._mtd_configspecialbutton(var_button) #28:
               self.addWidget(var_button, i, i2)
 
               var_slot = self._mtd_makeslot(self._mtd_inserttodisplay, var_buttontext)
