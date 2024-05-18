@@ -1,28 +1,28 @@
 # buttons.py (G)
-from PySide6.QtWidgets import (QPushButton, QGridLayout)
-from variables import var_medium_font_size
-from utils import (func_isempty, func_isnumordot, func_isvalidnumber, func_converttointorfloat)
-from display import cls_display
-from PySide6.QtCore import Slot
+from PySide6.QtWidgets import (QPushButton, QGridLayout) #1:
+from variables import var_medium_font_size #2:
+from utils import (func_isempty, func_isnumordot, func_isvalidnumber, func_converttointorfloat) #3:
+from display import cls_display #4:
+from PySide6.QtCore import Slot #5:
 # import math
 
-from typing import TYPE_CHECKING
-if TYPE_CHECKING: #1:
+from typing import TYPE_CHECKING #6:
+if TYPE_CHECKING: #6:
     from label import cls_info
     from main_window import cls_mainwindow
 
 class cls_button(QPushButton):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs): #7:
         super().__init__(*args, **kwargs)
-        self.mtd_configstyle()
+        self.mtd_configstyle() #7:
     
-    def mtd_configstyle(self):
-        self.setStyleSheet(f'font-size:{var_medium_font_size}px;')
-        self.setMinimumSize(50, 30)
-        self.setCheckable(False)
+    def mtd_configstyle(self): #8:
+        self.setStyleSheet(f'font-size:{var_medium_font_size}px;') #9:
+        self.setMinimumSize(50, 30) #10:
+        self.setCheckable(False) #11:
 
 class cls_buttonsgrid(QGridLayout):
-    def __init__(self, display: cls_display, info: 'cls_info', window: 'cls_mainwindow', *args, **kwargs) -> None:
+    def __init__(self, display: cls_display, info: 'cls_info', window: 'cls_mainwindow', *args, **kwargs) -> None: #12:
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
@@ -31,12 +31,12 @@ class cls_buttonsgrid(QGridLayout):
             ['4', '5', '6', '-'],
             ['1', '2', '3', '+'],
             ['N',  '0', '.', '='],
-        ]
+        ] #13:
 
-        self.var_display = display
-        self.var_info = info
-        self.var_window = window
-        # self.var_info.setText('kkk') # main, label, button. ;-)
+        self.var_display = display #14:
+        self.var_info = info #14:
+        self.var_window = window #14:
+        
         self._var_equation = ''
         self._var_equationinitial = 'Your account'
         self._var_left = None
