@@ -36,33 +36,33 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display = display #14:
         self.var_info = info #14:
         self.var_window = window #14:
-        
-        self._var_equation = ''
-        self._var_equationinitial = 'Your account'
-        self._var_left = None
-        self._var_right = None
-        self._var_operator = None
 
-        self.mtd_equation = self._var_equationinitial
-        self._mtd_makegrid()
+        self._var_equation = '' #15:
+        self._var_equationinitial = 'Your account' #16:
+        self._var_left = None #17:
+        self._var_right = None #17:
+        self._var_operator = None #18:
+
+        self.mtd_equation = self._var_equationinitial #19:
+        self._mtd_makegrid() #20:
 
     @property #getter
-    def mtd_equation(self):
+    def mtd_equation(self): #21:
         return self._var_equation
     
-    @mtd_equation.setter
+    @mtd_equation.setter #21:
     def mtd_equation(self, value):
         self._var_equation = value
         self.var_info.setText(value)
     
-    def _mtd_makegrid(self):
+    def _mtd_makegrid(self): #22:
         self.var_display.var_enterpressed.connect(self._mtd_equal)
         self.var_display.var_backspacedeletepressed.connect(self._mtd_backspace)
         self.var_display.var_scapepressed.connect(self._mtd_clear)
         self.var_display.var_inputpressed.connect(self._mtd_inserttodisplay)
         self.var_display.var_operatorpressed.connect(self._mtd_configleftoperator)
 
-        for i, j in enumerate(self._var_gridmask):
+        for i, j in enumerate(self._var_gridmask): #23:
           for i2, var_buttontext in enumerate(j):
               var_button = cls_button(var_buttontext)
               #if j2 not in '0123456789.':
@@ -73,7 +73,6 @@ class cls_buttonsgrid(QGridLayout):
 
               var_slot = self._mtd_makeslot(self._mtd_inserttodisplay, var_buttontext)
               self._mtd_connectbuttonclicked(var_button, var_slot)
-            #   var_button.clicked.connect(var_slot)
 
     def _mtd_connectbuttonclicked(self, button, slot):
         button.clicked.connect(slot)
