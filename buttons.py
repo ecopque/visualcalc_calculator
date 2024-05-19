@@ -4,7 +4,6 @@ from variables import var_medium_font_size #2:
 from utils import (func_isempty, func_isnumordot, func_isvalidnumber, func_converttointorfloat) #3:
 from display import cls_display #4:
 from PySide6.QtCore import Slot #5:
-# import math
 
 from typing import TYPE_CHECKING #6:
 if TYPE_CHECKING: #6:
@@ -26,7 +25,7 @@ class cls_buttonsgrid(QGridLayout):
         super().__init__(*args, **kwargs)
 
         self._var_gridmask = [
-            ['C', '◀', '^', '/'], #◀ <-
+            ['C', '◀', '^', '/'],
             ['7', '8', '9', '*'],
             ['4', '5', '6', '-'],
             ['1', '2', '3', '+'],
@@ -84,33 +83,33 @@ class cls_buttonsgrid(QGridLayout):
             self._mtd_connectbuttonclicked(button, var_slot) #38:
         
         if var_text in ('◀'):
-            self._mtd_connectbuttonclicked(button, self.var_display.backspace)
+            self._mtd_connectbuttonclicked(button, self.var_display.backspace) #39:
 
         if var_text in ('N'):
-            self._mtd_connectbuttonclicked(button, self._mtd_invertnumber)
+            self._mtd_connectbuttonclicked(button, self._mtd_invertnumber) #40:
 
         if var_text in ('+-/*^'):
-            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, var_text))
+            self._mtd_connectbuttonclicked(button, self._mtd_makeslot(self._mtd_configleftoperator, var_text)) #41:
 
         if var_text in ('='):
-            self._mtd_connectbuttonclicked(button, self._mtd_equal)
+            self._mtd_connectbuttonclicked(button, self._mtd_equal) #42:
     
-    @Slot()
-    def _mtd_makeslot(self, method, *args, **kwargs):
+    @Slot() #43:
+    def _mtd_makeslot(self, method, *args, **kwargs): #44:
         @Slot(bool)
-        def mtd_realslot(_):
+        def mtd_realslot(_): #45:
             method(*args, **kwargs)
         return mtd_realslot
 
     @Slot()
-    def _mtd_invertnumber(self):
-        var_displaytext = self.var_display.text()
+    def _mtd_invertnumber(self): #46:
+        var_displaytext = self.var_display.text() #47:
 
-        if not func_isvalidnumber(var_displaytext):
+        if not func_isvalidnumber(var_displaytext): #48:
             return
         
-        var_number = func_converttointorfloat(var_displaytext) * -1
-        self.var_display.setText(str(var_number))
+        var_number = func_converttointorfloat(var_displaytext) * -1 #49:
+        self.var_display.setText(str(var_number)) #50:
 
     @Slot()
     def _mtd_inserttodisplay(self, text):
