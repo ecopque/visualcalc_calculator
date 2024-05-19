@@ -68,21 +68,20 @@ class cls_buttonsgrid(QGridLayout):
               if not func_isnumordot(var_buttontext) and not func_isempty(var_buttontext): #26:
                   var_button.setProperty('cssClass', 'specialButton') #27:
                   self._mtd_configspecialbutton(var_button) #28:
-              self.addWidget(var_button, i, i2)
+              self.addWidget(var_button, i, i2) #29:
 
-              var_slot = self._mtd_makeslot(self._mtd_inserttodisplay, var_buttontext)
-              self._mtd_connectbuttonclicked(var_button, var_slot)
+              var_slot = self._mtd_makeslot(self._mtd_inserttodisplay, var_buttontext) #30:
+              self._mtd_connectbuttonclicked(var_button, var_slot) #31:
 
-    def _mtd_connectbuttonclicked(self, button, slot):
-        button.clicked.connect(slot)
+    def _mtd_connectbuttonclicked(self, button, slot): #32:
+        button.clicked.connect(slot) #33: #34:
     
-    def _mtd_configspecialbutton(self, button):
-        var_text = button.text()
+    def _mtd_configspecialbutton(self, button): #35:
+        var_text = button.text() #36:
         
         if var_text in ('C'):
-            var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.')
-            self._mtd_connectbuttonclicked(button, var_slot)
-            # button.clicked.connect(self.var_display.clear)
+            var_slot = self._mtd_makeslot(self._mtd_clear, 'Clean.') #37:
+            self._mtd_connectbuttonclicked(button, var_slot) #38:
         
         if var_text in ('◀'):
             self._mtd_connectbuttonclicked(button, self.var_display.backspace)
