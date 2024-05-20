@@ -121,49 +121,45 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.setFocus() #56:
 
     @Slot()
-    def _mtd_clear(self, msg):
-        print(msg)
-        self._var_left = None
-        self._var_right = None
-        self._var_operator = None
-        self.mtd_equation = self._var_equationinitial
-        self.var_display.clear()
-        self.var_display.setFocus()
+    def _mtd_clear(self, msg): #57: #58:
+        print(msg) #59:
+        self._var_left = None #60:
+        self._var_right = None #60:
+        self._var_operator = None #60:
+        self.mtd_equation = self._var_equationinitial #61:
+        self.var_display.clear() #62:
+        self.var_display.setFocus() #63:
     
     @Slot()
-    def _mtd_configleftoperator(self, text):
-        # var_buttontext = button.text()
-        var_displaytext = self.var_display.text()
-        self.var_display.clear()
-        self.var_display.setFocus()
+    def _mtd_configleftoperator(self, text): #64: #65:
+        var_displaytext = self.var_display.text() #66:
+        self.var_display.clear() #67:
+        self.var_display.setFocus() #68:
 
-        # If you click on the operator without any number.
-        if not func_isvalidnumber(var_displaytext) and self._var_left is None:
+        if not func_isvalidnumber(var_displaytext) and self._var_left is None: #69:
             self._mtd_showerror("You didn't type anything.")
             return
         
-        # If there is a number on the left, we do nothing. We are waiting for the number on the right
-        if self._var_left is None:
+        if self._var_left is None: #70:
             self._var_left = func_converttointorfloat(var_displaytext)
-        self._var_operator = text
-        self.mtd_equation = f'{self._var_left} {self._var_operator} ???'
+        self._var_operator = text #71:
+        self.mtd_equation = f'{self._var_left} {self._var_operator} ???' #72:
 
     @Slot()
-    def _mtd_equal(self):
-        var_displaytext = self.var_display.text()
+    def _mtd_equal(self): #73:
+        var_displaytext = self.var_display.text() #74:
 
-        if not func_isvalidnumber(var_displaytext) or (self._var_left is None):
-            self._mtd_showerror('Incomplete account.')
+        if not func_isvalidnumber(var_displaytext) or (self._var_left is None): #75:
+            self._mtd_showerror('Incomplete account.') #75:
             return
         
-        self._var_right = func_converttointorfloat(var_displaytext)
-        self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}'
-        # self._var_left: func_converttointorfloat #AAA
-        var_result: str | func_converttointorfloat = 'Error'
-        try:
+        self._var_right = func_converttointorfloat(var_displaytext) #76:
+        self.mtd_equation = f'{self._var_left} {self._var_operator} {self._var_right}' #77:
+        var_result: str | func_converttointorfloat = 'Error' #78:
+
+        try: #79:
             if '^' in self.mtd_equation and isinstance(self._var_left, int | float):
                 var_result = eval(self.mtd_equation.replace('^', '**'))
-                # var_result = math.pow(self._var_left, self._var_right) #AAA
             else:
                 var_result = eval(self.mtd_equation)
         except ZeroDivisionError:
@@ -171,14 +167,14 @@ class cls_buttonsgrid(QGridLayout):
         except OverflowError:
             self._mtd_showerror('Overflow: gigantic number.')
         
-        self.var_display.clear()
-        self.var_info.setText(f'{self.mtd_equation} = {var_result}')
+        self.var_display.clear() #80:
+        self.var_info.setText(f'{self.mtd_equation} = {var_result}') #81:
         self._var_left = var_result
         self._var_right = None
         self.var_display.setFocus()
 
         
-        if var_result == 'Error':
+        if var_result == 'Error': #82:
             self._var_left = None
 
     @Slot()
