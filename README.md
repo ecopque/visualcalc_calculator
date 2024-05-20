@@ -2,7 +2,7 @@
 
 # VisualCalc Calculator
 
-In this project, PySide6 was used, one of the most powerful and versatile libraries for creating graphical interfaces in Python. PySide6 is an official Qt binding for Python, allowing you to build feature-rich applications with a modern look and feel.
+This is VisualCalc, a basic calculator created entirely in Python. In this project, PySide6 was used, one of the most powerful and versatile libraries for creating graphical interfaces in Python. PySide6 is an official Qt binding for Python, allowing you to create feature-rich applications with a modern look and feel.
 
 ## How to Use
 
