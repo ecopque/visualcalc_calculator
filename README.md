@@ -30,6 +30,6 @@ We use the PySide6 concept of slots to define the functions that will be execute
 
 ## Images of the calculator under construction
 
-![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/final001.png)
-![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/final002.png)
-![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/final003.png)
+![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/A0000.png)
+![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/A0010.png)
+![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/A0020.png)
