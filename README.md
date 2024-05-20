@@ -3,7 +3,7 @@
 
 # VisualCalc Calculator
 
-This program is a visual calculator that allows users to perform basic arithmetic operations using PySide6, but which I will upgrade to a scientific calculator in the future.
+In this project, PySide6 was used, one of the most powerful and versatile libraries for creating graphical interfaces in Python. PySide6 is an official Qt binding for Python, allowing you to build feature-rich applications with a modern look and feel.
 
 ## How to Use
 
