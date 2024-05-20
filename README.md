@@ -18,6 +18,11 @@ In this project, PySide6 was used, one of the most powerful and versatile librar
 - Handles exceptions gracefully, preventing the program from crashing.
 - Provides a simple and intuitive interface for performing calculations.
 
+## Main Calculator Components
+
+- Buttons
+Calculator buttons are created using PySide6's QPushButton class. Each button represents a specific number, operator, or function (such as clearing or calculating the result). The cls_button custom class is an extension to QPushButton that allows you to further configure the style and behavior of buttons. Below is an example of how we configure a button.
+
 ## Images of the calculator under construction
 
 ![2024-05-06](https://github.com/ecopque/basic_calculator/blob/main/files/final001.png)
