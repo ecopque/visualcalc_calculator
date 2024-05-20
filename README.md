@@ -1,4 +1,3 @@
-## Attention: **I'm updating this repository!**
 - ![LastCommit](https://img.shields.io/github/last-commit/ecopque/visualcalc_calculator?logo=python&logoColor=white&label=Last+update&color=9bf12&&style=flat)&nbsp;
 
 # VisualCalc Calculator
