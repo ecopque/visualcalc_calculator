@@ -20,7 +20,7 @@ In this project, PySide6 was used, one of the most powerful and versatile librar
 
 ## Main Calculator Components
 
-- Buttons:
+- <strong>Buttons:</strong>
 Calculator buttons are created using PySide6's QPushButton class. Each button represents a specific number, operator, or function (such as clearing or calculating the result). The cls_button custom class is an extension to QPushButton that allows you to further configure the style and behavior of buttons. Below is an example of how we configure a button.
 - Layout
 To organize the buttons in a grid, we use QGridLayout. The cls_buttonsgrid class extends QGridLayout and is responsible for adding and positioning each button in the grid, as well as connecting button signals to the appropriate slots that perform calculator functions.
