@@ -112,14 +112,13 @@ class cls_buttonsgrid(QGridLayout):
         self.var_display.setText(str(var_number)) #50:
 
     @Slot()
-    def _mtd_inserttodisplay(self, text):
-        # var_buttontext = button.text()
-        var_newdisplayvalue = self.var_display.text() + text
+    def _mtd_inserttodisplay(self, text): #51: #52:
+        var_newdisplayvalue = self.var_display.text() + text #53:
         
-        if not func_isvalidnumber(var_newdisplayvalue):
+        if not func_isvalidnumber(var_newdisplayvalue): #54:
             return 
-        self.var_display.insert(text)
-        self.var_display.setFocus()
+        self.var_display.insert(text) #55:
+        self.var_display.setFocus() #56:
 
     @Slot()
     def _mtd_clear(self, msg):
@@ -130,7 +129,6 @@ class cls_buttonsgrid(QGridLayout):
         self.mtd_equation = self._var_equationinitial
         self.var_display.clear()
         self.var_display.setFocus()
-        # self.var_info.setText(self.equation)
     
     @Slot()
     def _mtd_configleftoperator(self, text):
