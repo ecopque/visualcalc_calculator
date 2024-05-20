@@ -178,33 +178,32 @@ class cls_buttonsgrid(QGridLayout):
             self._var_left = None
 
     @Slot()
-    def _mtd_backspace(self):
-        self.var_display.backspace()
-        self.var_display.setFocus()
+    def _mtd_backspace(self): #83:
+        self.var_display.backspace() #84:
+        self.var_display.setFocus() #85:
 
-    def _mtd_makedialog(self, text):
-        var_msgbox = self.var_window.mtd_makemsgbox()
-        var_msgbox.setText(text)
+    def _mtd_makedialog(self, text): #86:
+        var_msgbox = self.var_window.mtd_makemsgbox() #87:
+        var_msgbox.setText(text) #88:
         return var_msgbox
     
-    def _mtd_showerror(self, text):
-        var_msgbox = self._mtd_makedialog(text)
-        var_msgbox.setIcon(var_msgbox.Icon.Warning)
-        var_msgbox.setStandardButtons(var_msgbox.StandardButton.Ok | var_msgbox.StandardButton.Cancel)
-        var_msgbox.button(var_msgbox.StandardButton.Cancel).setText('Calcelll')
+    def _mtd_showerror(self, text): #89:
+        var_msgbox = self._mtd_makedialog(text) #90:
+        var_msgbox.setIcon(var_msgbox.Icon.Warning) #91:
+        var_msgbox.setStandardButtons(var_msgbox.StandardButton.Ok | var_msgbox.StandardButton.Cancel) #92:
+        var_msgbox.button(var_msgbox.StandardButton.Cancel).setText('Calcelll') #93:
         
-        var_result = var_msgbox.exec()
-        self.var_display.setFocus()
+        var_result = var_msgbox.exec() #94:
+        self.var_display.setFocus() #95:
 
-        if var_result == var_msgbox.StandardButton.Ok:
+        if var_result == var_msgbox.StandardButton.Ok: #96:
             print('Clicked ok')
-        elif var_result == var_msgbox.StandardButton.Cancel:
+        elif var_result == var_msgbox.StandardButton.Cancel: #97:
             print('Clicked cancel')
-        # var_msgbox.exec()
 
-    def _mtd_showinfo(self, text):
-        var_msgbox = self._mtd_makedialog(text)
-        var_msgbox.setIcon(var_msgbox.Icon.Information)
+    def _mtd_showinfo(self, text): #98:
+        var_msgbox = self._mtd_makedialog(text) #99:
+        var_msgbox.setIcon(var_msgbox.Icon.Information) #100:
        
-        var_msgbox.exec()
-        self.var_display.setFocus()
+        var_msgbox.exec() #101:
+        self.var_display.setFocus() #102:
